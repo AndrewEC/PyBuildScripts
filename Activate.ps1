@@ -1,4 +1,4 @@
-. ./Scripts/_Common.ps1
+. ./build-scripts/_Common.ps1
 
 $ProgressPreference = "SilentlyContinue"
 $global:ProgressPreference = "SilentlyContinue"
