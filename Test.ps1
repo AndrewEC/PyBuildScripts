@@ -9,7 +9,7 @@ function Invoke-TestScript {
     )
     Write-Divider "Running unit tests"
 
-    $CoverageCommand.Invoke()
+    Invoke-Command $CoverageCommand
 
     if ($LASTEXITCODE -ne 0) {
         Write-Host "coverage command failed with status [$LASTEXITCODE]."

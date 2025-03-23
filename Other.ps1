@@ -12,7 +12,7 @@ function Invoke-OtherScript {
 
     Write-Divider $TitleMessage
 
-    $Block.Invoke()
+    Invoke-Command $Block
     if (-not ($ExpectedStatuses.Contains($LASTEXITCODE))) {
         Write-Host "Script failed with status [$LASTEXITCODE]"
         exit
