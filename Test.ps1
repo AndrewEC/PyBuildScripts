@@ -24,15 +24,6 @@ function Invoke-TestScript {
 
     $Expression = "(\d+)%$"
 
-    $CumulativeCoverage = 0
-    $Instances = 0
-    foreach ($Line in $CoverageReport.Split("`n")) {
-        if ($Line -match $Expression) {
-            $CumulativeCoverage += [int]$Matches.1
-            $Instances++
-        }
-    }
-
     Write-Host "Generating html coverage report..."
     coverage html
     if ($LASTEXITCODE -ne 0) {

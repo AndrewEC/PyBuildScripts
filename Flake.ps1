@@ -12,10 +12,7 @@ function Invoke-FlakeScript {
             Write-Host $Line
         }
         exit
-    }
-
-    if (($null -ne $Results) -and ($Results.Trim() -ne "")) {
     } else {
-        Write-Host "No errors to report."
+        Write-Host "No linting errors to report."
     }
 }
