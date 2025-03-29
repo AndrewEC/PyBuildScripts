@@ -10,7 +10,6 @@ function Invoke-TestScript {
     Write-Divider "Running unit tests"
 
     Invoke-Command $CoverageCommand
-
     if ($LASTEXITCODE -ne 0) {
         Write-Host "coverage command failed with status [$LASTEXITCODE]."
         exit
@@ -22,8 +21,6 @@ function Invoke-TestScript {
         exit
     }
 
-    $Expression = "(\d+)%$"
-
     Write-Host "Generating html coverage report..."
     coverage html
     if ($LASTEXITCODE -ne 0) {
@@ -33,8 +30,9 @@ function Invoke-TestScript {
 
     Write-Host "Evaluating test coverage..."
     $CoverageLines = $CoverageReport.Split("`n")
-    $Line = $CoverageLines[$CoverageLines.Length - 1]
-    if ($Line -match $Expression) {
+    $LastLine = $CoverageLines[$CoverageLines.Length - 1]
+    $Expression = "(\d+)%$"
+    if ($LastLine -match $Expression) {
         $Percentage = [int]$Matches.1
         Write-Host "Test code coverage was [$Percentage%]."
 
