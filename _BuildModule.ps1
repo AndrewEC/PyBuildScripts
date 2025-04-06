@@ -16,7 +16,7 @@ $FunctionsToExport = $FunctionScripts | ForEach-Object {
     $_.Name.Substring(0, $_.Name.Length - $_.Extension.Length)
 }
 
-$DestinationFile = "./BuildScripts.psm1"
+$DestinationFile = "./PyBuildScripts.psm1"
 Write-Host "Writing combined script to [$DestinationFile]."
 
 if (Test-Path $DestinationFile -PathType Leaf) {
