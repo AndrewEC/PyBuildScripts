@@ -1,4 +1,4 @@
-. ./build-scripts/_Common.ps1
+. ./build-scripts/Write-Divider.ps1
 
 $ProgressPreference = "SilentlyContinue"
 $global:ProgressPreference = "SilentlyContinue"
