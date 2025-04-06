@@ -1,4 +1,4 @@
-. ./build-scripts/_Common.ps1
+. ./build-scripts/Write-Divider.ps1
 
 function Invoke-FlakeScript {
     Write-Divider "Running flake8"
