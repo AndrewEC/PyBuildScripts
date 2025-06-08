@@ -20,7 +20,16 @@ function Invoke-ActivateScript {
         Write-Output "Virtual environment not found. Creating virtual environment and installing dependencies..."
 
         python -m venv $EnvFolder
+
+        $WaitCount = 0
+        while ((-not (Test-Path $ActivateScriptPath -PathType Leaf)) -and ($WaitCount -lt 30)) {
+            Start-Sleep -Seconds 0.1
+            $WaitCount++
+        }
+
         & $ActivateScriptPath
+        python -m pip install --upgrade pip
+
         pip install -r requirements.txt
     }
 }
