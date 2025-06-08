@@ -19,9 +19,9 @@ function Invoke-ActivateScript {
     } else {
         Write-Output "Virtual environment not found. Creating virtual environment and installing dependencies..."
 
-        python -m venv $EnvFolder `
-            && & $ActivatePath `
-            && pip install -r requirements.txt
+        python -m venv $EnvFolder
+        & $ActivatePath
+        pip install -r requirements.txt
     }
 }
 

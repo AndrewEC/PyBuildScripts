@@ -16,19 +16,20 @@ $FunctionsToExport = $FunctionScripts | ForEach-Object {
     $_.Name.Substring(0, $_.Name.Length - $_.Extension.Length)
 }
 
+$CombinedLines = $FunctionScripts | ForEach-Object {
+    Write-Host "Including content from script: [$_]"
+    return Get-Content $_
+} | Where-Object {
+    -not $_.StartsWith(".")
+} | ForEach-Object {
+    $_
+}
+
 $DestinationFile = "./PyBuildScripts.psm1"
 Write-Host "Writing combined script to [$DestinationFile]."
 
 if (Test-Path $DestinationFile -PathType Leaf) {
     Remove-Item $DestinationFile
-}
-
-$CombinedLines = $FunctionScripts | ForEach-Object {
-    Get-Content $_
-} | Where-Object {
-    -not $_.StartsWith(".")
-} | ForEach-Object {
-    $_
 }
 
 $CombinedLines | Out-File $DestinationFile
