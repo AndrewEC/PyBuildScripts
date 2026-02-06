@@ -1,3 +1,4 @@
+Set-StrictMode -Version Latest
 
 $ProgressPreference = "SilentlyContinue"
 $global:ProgressPreference = "SilentlyContinue"
@@ -27,10 +28,18 @@ function Invoke-ActivateScript {
             $WaitCount++
         }
 
-        & $ActivateScriptPath
-        python -m pip install --upgrade pip
+        if ($WaitCount -ge 30) {
+            Write-Host "Activate script could not be found. Virtual environment could not be activated."
+            exit
+        }
 
-        pip install -r requirements.txt
+        & $ActivateScriptPath
+
+        python -m pip install --upgrade pip
+        if ($LASTEXITCODE -ne 0) {
+            Write-Host "Failed to upgrade pip to the latest version. Pip install failed with status [$LASTEXITCODE]."
+            exit
+        }
     }
 }
 
