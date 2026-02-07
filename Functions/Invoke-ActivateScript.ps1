@@ -12,7 +12,7 @@ function Invoke-ActivateScript {
         Write-Output "Virtual environment already exists. Activating virtual environment..."
         & $ActivateScriptPath
     } else {
-        Write-Output "Virtual environment not found. Creating virtual environment and installing dependencies..."
+        Write-Output "Virtual environment not found. Creating virtual environment and upgrading pip..."
 
         python -m venv $EnvFolder
 
