@@ -53,23 +53,6 @@ function Invoke-AuditScript {
     }
 }
 
-function Invoke-FlakeScript {
-    Write-Divider "Running flake8"
-
-    $Results = (python -m flake8)
-
-    if ($LASTEXITCODE -ne 0) {
-        Write-Host "flake8 failed with status [$LASTEXITCODE]."
-        Write-Host "Flake report:"
-        foreach ($Line in $Results.Split("`n")) {
-            Write-Host $Line
-        }
-        exit
-    } else {
-        Write-Host "No linting errors to report."
-    }
-}
-
 function Invoke-InstallScript {
     Write-Divider "Installing dependencies"
 
@@ -97,6 +80,23 @@ function Invoke-OtherScript {
     if (-not ($ExpectedStatuses.Contains($LASTEXITCODE))) {
         Write-Host "Script failed with status [$LASTEXITCODE]"
         exit
+    }
+}
+
+function Invoke-RuffScript {
+    Write-Divider "Running ruff"
+
+    $Results = (ruff check --config .\ruff.toml)
+
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "ruff failed with status [$LASTEXITCODE]."
+        Write-Host "Ruff report:"
+        foreach ($Line in $Results.Split("`n")) {
+            Write-Host $Line
+        }
+        exit
+    } else {
+        Write-Host "No linting errors to report."
     }
 }
 

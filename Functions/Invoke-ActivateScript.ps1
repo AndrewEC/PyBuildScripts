@@ -23,7 +23,7 @@ function Invoke-ActivateScript {
             $WaitCount++
         }
 
-        if ($WaitCount -gte 30) {
+        if ($WaitCount -ge 30) {
             Write-Host "Activate script could not be found. Virtual environment could not be activated."
             exit
         }
