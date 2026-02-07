@@ -8,8 +8,7 @@ $global:ErrorActionPreference = "Stop"
 function Invoke-ActivateScript {
     Write-Divider "Activating virtual environment"
 
-    $CurrentFolder = Get-Location | Split-Path -Leaf
-    $EnvFolder = "$CurrentFolder-venv"
+    $EnvFolder = ".venv"
     Write-Host "Using venv folder of [$EnvFolder]"
 
     $ActivateScriptPath = Join-Path ($PSScriptRoot | Split-Path -Parent) "$EnvFolder/Scripts/Activate.ps1"
