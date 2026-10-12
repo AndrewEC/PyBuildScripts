@@ -1,4 +1,4 @@
-. ./build-scripts/Write-Divider.ps1
+. ./Write-Divider.ps1
 
 function Invoke-ActivateScript {
     Write-Divider "Activating virtual environment"

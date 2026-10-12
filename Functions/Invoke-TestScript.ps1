@@ -1,4 +1,4 @@
-. ./build-scripts/Write-Divider.ps1
+. ./Write-Divider.ps1
 
 function Invoke-TestScript {
     param(
